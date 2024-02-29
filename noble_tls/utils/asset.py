@@ -61,7 +61,10 @@ def generate_asset_name(
             if distro_name.lower() in {"ubuntu", "debian"}:
                 system_os = f"{system_os}-ubuntu"
 
-    return f"{custom_part}-{system_os}-{asset_arch}-v{version}{file_extension}"
+    asset_name = f"{custom_part}-{system_os}-{asset_arch}-v{version}{file_extension}"
+    if asset_name == "tls-client-linux-amd64-v1.7.2.so":
+        asset_name = "tls-client-linux-ubuntu-amd64-v1.7.2.so"
+    return asset_name
 
 
 if __name__ == "__main__":
