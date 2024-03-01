@@ -68,11 +68,14 @@ def initialize_library():
         # load env variables
         environment = os.getenv("ENVIRONMENT")
         if environment == "local":
+            print("Loading asset...")
             asset_name = load_asset()
             library = ctypes.cdll.LoadLibrary(f"{root_dir()}/dependencies/{asset_name}")
             return library
         else:
-            library_path = "./noble_tls/tls-client-linux-ubuntu-amd64-v1.7.2.so"
+            print("Using Ubuntu library...")
+            current_directory = os.getcwd()
+            library_path = f"{current_directory}/../tls-client-linux-ubuntu-amd64-v1.7.2.so"
             library = ctypes.cdll.LoadLibrary(library_path)
     except TLSClientException as e:
         print(f">> Failed to load the TLS Client asset: {e}")
