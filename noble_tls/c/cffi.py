@@ -75,8 +75,9 @@ def initialize_library():
         else:
             print("Using Ubuntu library...")
             current_directory = os.getcwd()
-            library_path = f"{current_directory}/../tls-client-linux-ubuntu-amd64-v1.7.2.so"
+            library_path = f"{current_directory}/noble-tls/noble_tls/tls-client-linux-ubuntu-amd64-v1.7.2.so"
             library = ctypes.cdll.LoadLibrary(library_path)
+            return library
     except TLSClientException as e:
         print(f">> Failed to load the TLS Client asset: {e}")
     except OSError as e:
